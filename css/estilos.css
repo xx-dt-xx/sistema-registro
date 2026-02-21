@@ -1,0 +1,428 @@
+/* ===== css/estilos.css ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Encabezado principal */
+body > header {
+    background-color: #A02014;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+body > header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+body > header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Menú de navegación */
+nav {
+    background-color: #C45824;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.5rem 0;
+}
+
+nav li {
+    margin: 0.5rem 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Contenido principal */
+main {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Tarjetas de curso */
+.curso {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.curso:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.curso > header {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.curso h3 {
+    margin-bottom: 15px;
+    color: #0055a5;
+    font-size: 1.5rem;
+}
+
+.curso img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.descripcion-curso {
+    color: #666;
+    margin: 10px 0 15px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 0 5px;
+}
+
+/* Formularios */
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+legend {
+    font-weight: bold;
+    color: #0055a5;
+    margin-bottom: 15px;
+    padding: 0;
+    width: 100%;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.seccion-formulario {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+}
+
+.titulo-seccion {
+    color: #0055a5;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.grupo-formulario {
+    margin-bottom: 15px;
+}
+
+.grupo-formulario label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+.grupo-formulario input,
+.grupo-formulario select {
+    appearance: none;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit; /* hereda la fuente del formulario */
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.grupo-formulario select {
+    /* Elimina la flecha nativa del navegador */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* Flecha personalizada (solo para selects) */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+
+    /* Espacio a la derecha para que el texto no se monte sobre la flecha */
+    padding-right: 40px;
+}
+
+.grupo-formulario input:focus,
+.grupo-formulario select:focus {
+    outline: none;
+    border-color: #0055a5;
+    box-shadow: 0 0 0 3px rgba(0, 85, 165, 0.1);
+}
+
+.grupo-formulario input:hover,
+.grupo-formulario select:hover {
+    border-color: #999;
+}
+
+/* Estilo específico para campo de fecha */
+input[type="text"][placeholder="DD/MM/AAAA"] {
+    font-family: inherit;
+    letter-spacing: 1px;
+}
+
+/* Botones */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0055a5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #003d7a;
+}
+
+button:focus {
+    outline: 2px solid #A02014;
+    outline-offset: 2px;
+}
+
+/* Estados de error */
+.error-campo {
+    border-color: #dc3545 !important;
+    background-color: #fff8f8;
+}
+
+.error-campo:focus {
+    outline-color: #dc3545;
+}
+
+.mensaje-error {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    animation: aparecer 0.3s ease;
+}
+
+.error-formulario {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+    animation: aparecer 0.3s ease;
+}
+
+/* Mensaje de éxito */
+.mensaje-exito {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+    font-weight: bold;
+    animation: aparecer 0.3s ease;
+}
+
+/* Overlay de éxito */
+.overlay-exito {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: aparecer 0.3s ease;
+    border-radius: 8px;
+}
+
+.contenido-overlay {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 90%;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.icono-exito {
+    width: 60px;
+    height: 60px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+}
+
+.contenido-overlay h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.contenido-overlay p {
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.detalle-overlay {
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+.boton-overlay {
+    background-color: #0055a5;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+    width: auto;
+    display: inline-block;
+}
+
+.boton-overlay:hover {
+    background-color: #003d7a;
+}
+
+/* Animaciones */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecerOverlay {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Pie de página */
+footer {
+    background-color: #A02014;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body > header h1 {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav li {
+        margin: 0.25rem 0;
+    }
+
+    main {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .curso img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    body > header h1 {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .curso {
+        padding: 15px;
+    }
+
+    .curso h3 {
+        font-size: 1.3rem;
+    }
+
+    .contenido-overlay {
+        width: 90%;
+        padding: 20px;
+    }
+}
