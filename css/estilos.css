@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
 }
 
 html {
@@ -129,40 +129,93 @@ main {
     min-height: calc(100vh - 150px); /* Altura mínima para que el footer no suba */
 }
 
-/* ===== BOTONES GLOBALES ===== */
-/* Estilo base para todos los botones - color rojo #bf0101 */
+/* ===== BOTONES GLOBALES - TODOS ANCHO COMPLETO ===== */
 .btn {
-    display: inline-block;
-    background-color: #bf0101; /* Rojo solicitado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #bf0101;
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+    padding: 0 1.5rem;
+    border-radius: 7px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
     transition: background-color 0.2s ease;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: .85rem;
     text-align: center;
-    margin: 0 auto; /* Centrado por defecto */
+    box-sizing: border-box;
+    height: 40px;
+    text-transform: uppercase;
+    margin-top: 10px;
 }
 
 .btn:hover {
-    background-color: #8f0101; /* Rojo más oscuro */
+    background-color: #8f0101;
 }
 
-/* Botones dentro de tarjetas de curso: centrados */
+/* Botones en línea (para casos excepcionales donde no quieras ancho completo) */
+.btn-inline {
+    display: inline-flex;
+    width: auto;
+    min-width: 120px;  /* Ancho mínimo opcional */
+}
+
+/* Botones dentro de hero section (en fila) */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+    width: auto;           /* Para que no ocupen todo el ancho en el hero */
+    min-width: 150px;
+}
+
+/* Botones dentro de tarjetas de curso */
 .curso-card .btn {
-    display: block;
-    width: fit-content;
-    margin: 1rem auto 0;
+    margin: 1rem 0 0 0;
 }
 
-/* Botones en formularios: ancho completo */
+/* Botones de formulario (ya tienen ancho completo por .btn) */
 .formulario-registro .btn,
-.grupo-formulario button[type="submit"] {
+.grupo-formulario button[type="submit"],
+.login-button.btn {        /* Si login-button también usa .btn */
     width: 100%;
-    margin-top: 1rem;
+}
+
+/* ===== BOTONES COMPACTOS ===== */
+.btn-compact {
+    width: 30%;              /* Ancho automático según contenido */
+    min-width: 120px;         /* Ancho mínimo para consistencia */
+    max-width: 200px;         /* Ancho máximo para controlar tamaño */
+    display: inline-flex;     /* Mantiene alineación vertical y se comporta como inline */
+    margin: 5px 0 5px 0;       /* Margen inferior para separación */
+    padding: 0 1.2rem;        /* Padding horizontal un poco menor si quieres más compacto */
+}
+
+/* Botón gris específico */
+.btn-gray {
+    background-color: lightgray;
+    color: black;
+}
+
+.btn-gray:hover {
+    background-color: #a0a0a0;   /* Gris más oscuro al hover */
+    color: black;
+}
+
+/* Contenedor para alinear los botones a la izquierda */
+.buttons-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    /* Alinea los botones a la izquierda */
+    gap: 1px;                  /* Espacio entre botones */
+    width: 100%;
 }
 
 /* ===== HERO BANNER FULL WIDTH CON IMAGEN DE FONDO ===== */
@@ -214,14 +267,6 @@ main {
     margin-bottom: 2rem;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     color: white;
-}
-
-/* Los botones se centran gracias a flexbox del contenedor padre */
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
 /* ===== FEATURES (Características) ===== */
@@ -406,6 +451,13 @@ main {
 }
 
 /* ===== PÁGINA DE REGISTRO (sin cambios funcionales) ===== */
+
+fieldset {
+    border: none; /* quitar el borde a las secciones dentro del registro*/
+    padding: 0;
+    margin: 0;
+}
+
 .registro-contenedor {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -437,79 +489,89 @@ main {
     margin-bottom: 0.75rem;
 }
 
-.formulario-registro {
-    background-color: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 8px;
-}
-
-.formulario-registro h2 {
-    color: #333;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
-
-.grupo-formulario {
-    margin-bottom: 1.25rem;
-}
-
-.grupo-formulario label {
-    display: block;
-    margin-bottom: 0.25rem;
-    font-weight: 600;
-    color: #333;
-    font-size: 0.95rem;
-}
-
+/* ===== FORMULARIO DE REGISTRO (NUEVO ESTILO) ===== */
 .grupo-formulario input,
 .grupo-formulario select,
 .grupo-formulario textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: inherit;
-    background-color: white;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 54px;                     /* Altura aumentada */
+    border-radius: 5px;               /* Bordes redondeados */
+    background: white;
+    margin-bottom: 15px;               /* Espacio inferior */
+    border: 2px solid #e0e0e0;         /* Borde gris claro de 2px */
+    padding: 0 20px;                   /* Padding horizontal, sin padding vertical */
+    font-weight: 300;                  /* Fuente más ligera */
+    font-size: 14px;
+    color: #4B4B4B;
+    box-sizing: border-box;            /* Asegura que el padding no desborde */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Para el hover */
 }
 
-.grupo-formulario input:focus,
-.grupo-formulario select:focus,
-.grupo-formulario textarea:focus {
-    outline: none;
-    border-color: #bf0101; /* Rojo al enfocar */
-    box-shadow: 0 0 0 3px rgba(191, 1, 1, 0.1);
+/* Hover en los campos */
+.grupo-formulario input:hover,
+.grupo-formulario select:hover,
+.grupo-formulario textarea:hover {
+    transform: scale(1.009);            /* Efecto de escala */
+    box-shadow: 0px 0px 3px 0px #212529; /* Sombra oscura */
 }
 
+/* Estilo para selects (manteniendo la flecha personalizada) */
 .grupo-formulario select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234B4B4B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 1rem;
-    padding-right: 2.5rem;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 40px;               /* Espacio para la flecha */
 }
 
-/* Estilo especial para campo de fecha con placeholder */
+/* Botón de envío con nuevo estilo (rojo, sin bordes, texto blanco) */
+.grupo-formulario button[type="submit"],
+.formulario-registro .btn,
+.btn-submit {                          /* Por si usas alguna clase adicional */
+    width: 100%;
+    height: 54px;
+    font-size: 14px;
+    color: white;
+    background: #bf0101;                /* Rojo solicitado */
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 10px;                   /* Espacio superior */
+}
+
+.grupo-formulario button[type="submit"]:hover,
+.formulario-registro .btn:hover {
+    transform: scale(1.009);
+    box-shadow: 0px 0px 3px 0px #212529;
+}
+
+/* Ajustes para el campo de fecha con placeholder (mantiene el formato) */
 input[type="text"][placeholder="DD/MM/AAAA"] {
-    font-family: monospace;
     letter-spacing: 1px;
 }
 
-/* ===== ESTADOS DE ERROR ===== */
+.formulario-registro h2 {
+    color: #333;
+    margin-bottom: 1.5rem;   /* Aumenta este valor si es necesario */
+    font-size: 1.5rem;
+}
+
+/* ===== MENSAJES DE ERROR (sin cambios) ===== */
 .error-campo {
-    border-color: #dc3545 !important;
-    background-color: #fff8f8;
+    border: 2px solid #dc3545 !important; /* Añadimos borde rojo para error, sobrescribe border:none */
 }
 
 .mensaje-error {
     color: #dc3545;
     font-size: 0.85rem;
-    margin-top: 0.25rem;
+    margin-top: -10px;                   /* Ajuste para compensar el margin-bottom del input */
+    margin-bottom: 10px;
     animation: aparecer 0.3s ease;
 }
 
@@ -517,7 +579,7 @@ input[type="text"][placeholder="DD/MM/AAAA"] {
     background-color: #f8d7da;
     color: #721c24;
     padding: 0.75rem;
-    border-radius: 4px;
+    border-radius: 5px;
     margin-bottom: 1.5rem;
     border: 1px solid #f5c6cb;
     animation: aparecer 0.3s ease;
@@ -578,6 +640,177 @@ input[type="text"][placeholder="DD/MM/AAAA"] {
 
 .boton-overlay:hover {
     background-color: #8f0101;
+}
+
+/* ===== PÁGINA DE LOGIN ===== */
+/* Contenedor principal que centra el formulario */
+.login-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 2rem;
+}
+
+/* Tarjeta del formulario de login */
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  /* Centra verticalmente el contenido DENTRO de la tarjeta */
+    gap: 20px;
+    padding: 40px 30px;
+    background-color: #ffffff;
+    box-shadow: 0px 106px 42px rgba(0, 0, 0, 0.01),
+                0px 59px 36px rgba(0, 0, 0, 0.05),
+                0px 26px 26px rgba(0, 0, 0, 0.09),
+                0px 7px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 11px;
+    margin: auto;
+}
+
+/* Contenedor del logo */
+.login-logo {
+    box-sizing: border-box;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(180deg, rgba(248, 248, 248, 0) 50%, #F8F8F888 100%);
+    border: 1px solid #F7F7F8;
+    filter: drop-shadow(0px 0.5px 0.5px #EFEFEF) drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenedor de título y subtítulo */
+.login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.login-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #212121;
+}
+
+.login-subtitle {
+    font-size: 0.725rem;
+    max-width: 80%;
+    text-align: center;
+    line-height: 1.1rem;
+    color: #8B8E98;
+}
+
+/* Contenedor de cada campo (hereda de .grupo-formulario pero con estilos específicos) */
+.login-field {
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* Wrapper para input + ícono */
+.login-input-wrapper {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
+/* Ícono dentro del input */
+.login-icon {
+    width: 20px;
+    position: absolute;
+    z-index: 2;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8B8E98;
+    pointer-events: none;  /* Evita que el ícono interfiera con clics */
+    font-size: 16px;       /* Tamaño fijo para consistencia */
+    line-height: 1;         /* Elimina espacio extra */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Etiqueta del campo */
+.login-label {
+    font-size: 0.75rem;
+    color: #8B8E98;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.login-form {
+    width: 100%;
+}
+
+/* Estilo específico para inputs de login */
+.grupo-formulario .login-input {  /* Especificidad aumentada */
+    width: 100%;
+    height: 40px;           /* Misma altura que el wrapper */
+    padding: 0 0 0 40px;    /* Espacio para el ícono */
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid #e5e5e5;
+    filter: drop-shadow(0px 1px 0px #efefef)
+            drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+    font-family: inherit;
+    box-sizing: border-box;
+    line-height: normal;    /* Elimina line-height extra */
+}
+
+.login-input:focus {
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 0px 2px #242424;
+    background-color: transparent;
+}
+
+/* Separador */
+.login-separator {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    color: #8B8E98;
+    font-size: 0.8rem;
+    margin: 10px 0;
+}
+
+.login-separator-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    border: 0;
+    background-color: #e8e8e8;
+}
+
+/* Enlace a registro */
+.login-footer {
+    font-size: 0.75rem;
+    color: #8B8E98;
+    text-align: center;
+}
+
+.login-footer a {
+    color: #115DFC;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
 }
 
 /* ===== ANIMACIONES ===== */
@@ -700,32 +933,62 @@ footer a:hover {
     .hero {
         min-height: 350px;
     }
+
     .btn {
         width: 100%; /* Botones ocupan todo el ancho */
     }
+
     main {
         padding: 1rem;
     }
+
     .curso-card {
         padding: 1rem;
     }
+
     .curso-card h3 {
         font-size: 1.3rem;
     }
+
     .curso-card img {
         height: 160px;
     }
+
     .registro-contenedor,
     .requisitos,
     .formulario-registro {
         padding: 1rem;
     }
+
     .grupo-formulario input,
     .grupo-formulario select {
         padding: 0.6rem;
     }
+
     .cta {
         padding: 2rem 1rem;
+    }
+
+    .login-card {
+        max-width: 100%;  /* Ocupa todo el ancho en móviles */
+        padding: 30px 20px 20px 20px;
+    }
+
+    .login-input {
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .login-icon {
+        left: 10px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;        /* En móvil, también ocupan todo el ancho */
     }
 }
 
